@@ -1,0 +1,2 @@
+# BitBarPlugin
+BitBarPlugin
