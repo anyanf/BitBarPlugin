@@ -17,14 +17,14 @@ stock_codes = ['s_sh000001', 's_sz399300']
 
 # -----------------------------------------------------------------------------
 t = time.localtime()
-hour, minuten, second = t.tm_hour, t.tm_min, t.tm_sec
+day, hour, minuten, second = t.tm_wday, t.tm_hour, t.tm_min, t.tm_sec
 
 red = '#F73C2E'
 green = '#33bd59'
 black = '#87878b'
 
 
-if (hour != 14):
+if (hour != 14 or day == 5 or day == 6):
     print("恭喜发财 | color=#F73C2E")
     # print("大吉大利 | color=#F73C2E")
 
