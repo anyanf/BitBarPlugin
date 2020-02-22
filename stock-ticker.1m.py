@@ -15,7 +15,7 @@ import time
 # 配置想要显示的股票
 stock_codes = ['s_sh000001', 's_sz399300']
 
-#-----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 t = time.localtime()
 hour, minuten, second = t.tm_hour, t.tm_min, t.tm_sec
 
@@ -24,21 +24,23 @@ green = '#33bd59'
 black = '#87878b'
 
 
-if ( hour < 9 or hour > 15):
+if (hour != 14):
     print("恭喜发财 | color=#F73C2E")
     # print("大吉大利 | color=#F73C2E")
 
     exit()
     pass
 
-if minuten%2:
+if minuten % 2:
     stock_codes = stock_codes[::-1]
     pass
 
 stock_codes_str = ','.join(stock_codes)
 
-r = Request('http://hq.sinajs.cn/list='+stock_codes_str, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15'})
-response = str(urlopen(r).read().decode('gbk').encode("utf-8"), encoding='utf-8')
+r = Request('http://hq.sinajs.cn/list='+stock_codes_str, headers={
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15'})
+response = str(urlopen(r).read().decode(
+    'gbk').encode("utf-8"), encoding='utf-8')
 
 stocks = response.split(';')
 
@@ -46,13 +48,11 @@ for index in range(len(stock_codes)):
     stock = stocks[index]
     name, index, _, change_percent, _, _ = stock.split('"')[1].split(',')
 
-    if change_percent is not None:
-        color = red if float(change_percent) > 0 else green
-        print("{} {:.2f} ({:.2f}%) | color={}".format(name, float(index), float(change_percent), color))
+    change_percent = float(change_percent)
+    if change_percent != 0:
+        color = red if change_percent > 0 else green
+        print("{} {:.2f} ({:.2f}%) | color={}".format(
+            name, float(index), change_percent, color))
     else:
         color = black
         print("{} {:.2f} | color={}".format(name, float(index), color))
-    
-
-
-
