@@ -25,8 +25,19 @@ black = '#87878b'
 
 
 if (hour != 14 or day == 5 or day == 6):
-    print("恭喜发财 | color=#F73C2E")
-    # print("大吉大利 | color=#F73C2E")
+    # print("恭喜发财 | color=#F73C2E")
+
+    print("每日佳句")
+
+    print("---")
+
+    r = Request('https://api.ooopn.com/ciba/api.php?type=json', headers={
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15'})
+    response = json.loads(urlopen(r).read())
+
+    print("{} | color=red".format(response["ciba-en"]))
+
+    print(response["ciba"])
 
     exit()
     pass
