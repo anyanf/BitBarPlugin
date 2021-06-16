@@ -14,6 +14,7 @@ import time
 
 # 配置想要显示的股票
 stock_codes = ['s_sh000001', 's_sz399300']
+# , 'f_161725', 'f_005911'
 
 # -----------------------------------------------------------------------------
 t = time.localtime()
@@ -27,7 +28,7 @@ black = '#87878b'
 if (hour != 14 or day == 5 or day == 6):
     # print("恭喜发财 | color=#F73C2E")
 
-    print("每日佳句")
+    print("🧑🏻‍💻")
 
     print("---")
 
@@ -42,9 +43,6 @@ if (hour != 14 or day == 5 or day == 6):
     exit()
     pass
 
-if minuten % 2:
-    stock_codes = stock_codes[::-1]
-    pass
 
 stock_codes_str = ','.join(stock_codes)
 
